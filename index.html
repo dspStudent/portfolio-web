@@ -3,316 +3,1118 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Devi Sri — Software Engineer</title>
+  <title>Devi Sri Ranga Prasad — Software Engineer</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Anime.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  
   <style>
-    :root{
-      --bg:#0f1724; --card:#0b1220; --accent:#0354a6; --muted:#94a3b8; --glass: rgba(255,255,255,0.04);
-      --glass-2: rgba(255,255,255,0.02);
-      --radius:14px; --maxw:1100px;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-secondary: #0f1724;
+      --bg-card: #141b2b;
+      --accent-primary: #0ea5e9;
+      --accent-secondary: #06b6d4;
+      --accent-gradient: linear-gradient(135deg, #0ea5e9, #06b6d4);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      --radius: 16px;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%; margin:0; background: radial-gradient(1200px 600px at 10% 10%, rgba(3,84,166,0.12), transparent), radial-gradient(800px 400px at 90% 90%, rgba(0,153,255,0.06), transparent), var(--bg); color:#e6eef8}
-    .wrap{max-width:var(--maxw); margin:36px auto; padding:28px;}
-    header{display:flex; align-items:center; justify-content:space-between; gap:24px}
-    .brand{display:flex; align-items:center; gap:12px}
-    .logo{width:56px; height:56px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#00a3ff); display:grid; place-items:center; font-weight:800; font-size:20px; color:white}
-    nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:600}
-    nav a:hover{color:var(--accent)}
-    .hero{display:grid; grid-template-columns:1fr 380px; gap:28px; margin-top:26px}
-    .card{background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02)); border-radius:var(--radius); padding:22px; box-shadow: 0 6px 30px rgba(2,6,23,0.6);}
-    .title{font-size:28px; font-weight:800; color:white; letter-spacing:-0.5px}
-    .subtitle{color:var(--muted); margin-top:6px}
-    .cta{margin-top:18px; display:flex; gap:12px}
-    .btn{background:linear-gradient(90deg,var(--accent),#00a3ff); padding:10px 14px; border-radius:10px; color:white; font-weight:700; text-decoration:none}
-    .ghost{border:1px solid rgba(255,255,255,0.06); padding:10px 14px; border-radius:10px; color:var(--muted); text-decoration:none}
-    .profile-card{display:flex; flex-direction:column; align-items:center; gap:12px}
-    .avatar{width:120px; height:120px; border-radius:18px; background:linear-gradient(135deg,#083b6f,#0d6efd); display:grid; place-items:center; font-size:40px; font-weight:800}
-    .meta{color:var(--muted); text-align:center}
-    .stats{display:flex; gap:10px; margin-top:10px}
-    .stat{background:var(--glass); padding:8px 12px; border-radius:10px; font-weight:700; color:white}
-
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      background: radial-gradient(ellipse 120% 100% at 10% 10%, rgba(14, 165, 233, 0.15), transparent),
+                  radial-gradient(ellipse 80% 60% at 90% 90%, rgba(6, 182, 212, 0.1), transparent),
+                  var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    
+    /* Animated Background Particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--accent-primary);
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+    
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s;
+    }
+    
+    .glass-card:hover::before {
+      left: 100%;
+    }
+    
+    .glass-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 80px rgba(14, 165, 233, 0.3);
+    }
+    
+    /* Navigation */
+    .navbar {
+      backdrop-filter: blur(20px);
+      background: rgba(10, 14, 26, 0.8);
+      border-bottom: 1px solid var(--glass-border);
+      padding: 1rem 0;
+    }
+    
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .nav-link {
+      color: var(--text-secondary);
+      font-weight: 600;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent-gradient);
+      transform: translateX(-50%);
+      transition: width 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: var(--accent-primary);
+    }
+    
+    .nav-link:hover::after {
+      width: 80%;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    
+    /* Buttons */
+    .btn-primary-custom {
+      background: var(--accent-gradient);
+      border: none;
+      padding: 0.875rem 2rem;
+      font-weight: 700;
+      border-radius: 12px;
+      transition: all 0.3s;
+      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+    }
+    
+    .btn-primary-custom:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(14, 165, 233, 0.5);
+    }
+    
+    .btn-outline-custom {
+      border: 2px solid var(--glass-border);
+      padding: 0.875rem 2rem;
+      font-weight: 700;
+      border-radius: 12px;
+      color: var(--text-primary);
+      background: transparent;
+      transition: all 0.3s;
+    }
+    
+    .btn-outline-custom:hover {
+      background: var(--glass);
+      border-color: var(--accent-primary);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+    }
+    
+    /* Profile Card */
+    .profile-avatar {
+      width: 150px;
+      height: 150px;
+      background: var(--accent-gradient);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: 900;
+      box-shadow: 0 20px 60px rgba(14, 165, 233, 0.4);
+      margin-bottom: 1.5rem;
+    }
+    
+    .stat-badge {
+      background: var(--glass);
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 1px solid var(--glass-border);
+    }
+    
     /* Projects */
-    .projects{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:18px}
-    .project{padding:14px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); border:1px solid var(--glass-2)}
-    .project h4{margin:0 0 8px 0}
-    .stack{color:var(--muted); font-size:13px}
-
-    /* Skills */
-    .skills{display:grid; gap:10px}
-    .skill{display:flex; align-items:center; gap:12px}
-    .bar{flex:1; height:10px; background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:999px; overflow:hidden}
-    .bar > i{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--accent),#00a3ff); border-radius:999px}
-
-    /* Experience & Education */
-    .two-col{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
-    .list-item{margin-bottom:10px}
-
-    footer{margin-top:32px; color:var(--muted); font-size:14px; text-align:center}
-
-    /* floating shapes */
-    .bg-shape{position:fixed; right:-120px; top:-60px; width:420px; height:420px; border-radius:60px; filter: blur(60px); opacity:0.12; background:linear-gradient(135deg,#00a3ff,#003a8c); pointer-events:none}
-    .bg-shape-2{left:-120px; bottom:-80px; width:360px; height:360px; border-radius:50px; filter: blur(48px); opacity:0.08; background:linear-gradient(135deg,#00d4ff,#1b7fd6); pointer-events:none}
-
-    /* responsive */
-    @media (max-width:880px){
-      .hero{grid-template-columns:1fr}
-      nav{display:none}
-      .wrap{padding:18px}
+    .project-card {
+      height: 100%;
+      padding: 2rem;
+      cursor: pointer;
     }
-
-    /* small helpers */
-    .muted{color:var(--muted)}
-    .chip{background:rgba(255,255,255,0.02); padding:6px 8px; border-radius:999px; font-size:13px}
-    a.project-link{display:inline-block; margin-top:10px; font-weight:700}
+    
+    .project-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--accent-gradient);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    
+    .tech-badge {
+      background: rgba(14, 165, 233, 0.15);
+      color: var(--accent-primary);
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid rgba(14, 165, 233, 0.3);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    
+    /* Skills */
+    .skill-item {
+      margin-bottom: 1.5rem;
+    }
+    
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .skill-bar {
+      height: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .skill-progress {
+      height: 100%;
+      background: var(--accent-gradient);
+      border-radius: 999px;
+      width: 0;
+      transition: width 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
+    }
+    
+    /* Timeline */
+    .timeline-item {
+      position: relative;
+      padding-left: 2.5rem;
+      padding-bottom: 2rem;
+      border-left: 2px solid var(--glass-border);
+    }
+    
+    .timeline-item:last-child {
+      border-left: none;
+      padding-bottom: 0;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: -9px;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(14, 165, 233, 0.6);
+    }
+    
+    /* Contact Form */
+    .form-control-custom {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 0.875rem 1.25rem;
+      color: var(--text-primary);
+      transition: all 0.3s;
+    }
+    
+    .form-control-custom:focus {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--accent-primary);
+      color: var(--text-primary);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+      outline: none;
+    }
+    
+    .form-control-custom::placeholder {
+      color: var(--text-muted);
+    }
+    
+    /* Social Links */
+    .social-link {
+      width: 50px;
+      height: 50px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+      font-size: 1.25rem;
+      transition: all 0.3s;
+    }
+    
+    .social-link:hover {
+      background: var(--accent-gradient);
+      color: white;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(14, 165, 233, 0.4);
+    }
+    
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--glass-border);
+      padding: 3rem 0;
+      margin-top: 5rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* Section Titles */
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .hero-section {
+        min-height: auto;
+        padding: 3rem 0;
+      }
+      
+      .profile-avatar {
+        width: 120px;
+        height: 120px;
+        font-size: 2.5rem;
+      }
+      
+      .navbar-collapse {
+        background: var(--bg-secondary);
+        padding: 1rem;
+        border-radius: 12px;
+        margin-top: 1rem;
+      }
+    }
+    
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
   </style>
 </head>
 <body>
-  <div class="bg-shape"></div>
-  <div class="bg-shape-2"></div>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo" id="logo">DS</div>
-        <div>
-          <div style="font-weight:800; font-size:16px">Devi Sri Ranga Prasad</div>
-          <div class="muted" style="font-size:13px">Backend Software Engineer · Java · Microservices · AI</div>
-        </div>
+  <!-- Particles Background -->
+  <div class="particles" id="particles"></div>
+  
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#" id="brand">
+        <i class="bi bi-code-slash"></i> Devi Sri
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="text-white"><i class="bi bi-list fs-2"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
       </div>
-      <nav id="nav">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+    </div>
+  </nav>
 
-    <section class="hero">
-      <div class="card" id="heroCard">
-        <div class="title">Hi — I'm Devi. I build reliable backend systems & AI-enabled developer tools.</div>
-        <div class="subtitle">Experienced in Spring Boot microservices, real-time systems (SSE), Redis caching, and RAG-powered AI assistants. I focus on performance, scalability, and practical ML integrations.</div>
-        <div class="cta">
-          <a class="btn" href="#projects">See projects</a>
-          <a class="ghost" href="mailto:devisriprasad948@gmail.com">Contact me</a>
-        </div>
-
-        <div style="margin-top:18px" id="highlights">
-          <div class="chip">Merck KGaA — Backend Engineer</div>
-          <div style="height:6px"></div>
-          <div class="muted">Performance optimizations: 40% DB load reduction · 70% automated workflows · Real-time dashboards with SSE</div>
-        </div>
-      </div>
-
-      <aside class="card profile-card" id="profileCard">
-        <div class="avatar">DR</div>
-        <div style="font-weight:700">Devi Sri Ranga Prasad</div>
-        <div class="meta">Backend Engineer • Java, Spring Boot • AI/LLM enthusiast</div>
-        <div class="stats">
-          <div class="stat">1+ yrs exp</div>
-          <div class="stat">5k users</div>
-        </div>
-        <div style="width:100%; margin-top:14px; display:grid; gap:8px">
-          <a class="ghost" href="https://www.linkedin.com/in/gudimetla-devi-sri-ranga-prasad">LinkedIn</a>
-          <a class="ghost" href="https://github.com/dspStudent">GitHub</a>
-        </div>
-      </aside>
-    </section>
-
-    <section id="projects" style="margin-top:18px">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:8px">
-        <h3 style="margin:0">Selected Projects</h3>
-        <div class="muted">Real-time systems · AI assistants · Developer tools</div>
-      </div>
-
-      <div class="projects" id="projectsGrid">
-        <div class="project">
-          <h4>Central Monitoring Platform (CMP)</h4>
-          <div class="stack">Java · Spring Boot · Redis · InfluxDB · Kafka · SSE</div>
-          <p class="muted">Unified monitoring dashboard for 200+ applications with sub-second updates and automated incident management.</p>
-          <a class="project-link" href="https://cmp.merckgroup.com" target="_blank">Live (internal)</a>
-        </div>
-
-        <div class="project">
-          <h4>My Safety Agent</h4>
-          <div class="stack">Python · LangChain · RAG · MCP · NLP</div>
-          <p class="muted">Voice-enabled LLM assistant for Safety Data Sheets (SDS) — RAG for domain-aware answers and voice interaction in labs.</p>
-        </div>
-
-        <div class="project">
-          <h4>My Coding Assistant</h4>
-          <div class="stack">Python · LangChain · ML · Code Analysis</div>
-          <p class="muted">Automated code generation & bug-pattern detection improving team velocity and test coverage.</p>
-        </div>
-
-        <div class="project">
-          <h4>Monitoring + Automation Integrations</h4>
-          <div class="stack">MuleSoft · IT4YOU · Icinga2</div>
-          <p class="muted">Incident auto-ticketing and scheduled pipelines to bridge monitoring & ITSM systems.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills" style="margin-top:20px">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
-        <h3 style="margin:0">Skills</h3>
-        <div class="muted">Languages, frameworks and infra</div>
-      </div>
-
-      <div class="card skills" style="margin-top:12px">
-        <div class="skill"><div style="width:140px">Java</div><div class="bar"><i data-val="90"></i></div></div>
-        <div class="skill"><div style="width:140px">Spring Boot</div><div class="bar"><i data-val="86"></i></div></div>
-        <div class="skill"><div style="width:140px">Microservices</div><div class="bar"><i data-val="82"></i></div></div>
-        <div class="skill"><div style="width:140px">Redis / Caching</div><div class="bar"><i data-val="78"></i></div></div>
-        <div class="skill"><div style="width:140px">Python / LangChain</div><div class="bar"><i data-val="72"></i></div></div>
-        <div class="skill"><div style="width:140px">Elasticsearch / DBs</div><div class="bar"><i data-val="70"></i></div></div>
-      </div>
-    </section>
-
-    <section id="experience" style="margin-top:20px">
-      <div style="display:flex; align-items:center; justify-content:space-between">
-        <h3 style="margin:0">Experience & Education</h3>
-        <div class="muted">Merck KGaA · Lovely Professional University</div>
-      </div>
-
-      <div class="two-col" style="margin-top:12px">
-        <div class="card">
-          <div class="list-item"><strong>Software Engineer — Merck KGaA</strong><div class="muted">Aug 2025 — Present · Darmstadt, Germany</div>
-            <div class="muted" style="margin-top:8px">Built Spring Boot microservices for enterprise monitoring, implemented Redis caching (40% DB load reduction), real-time dashboards using SSE, and automated incident pipelines.</div></div>
-
-          <div class="list-item" style="margin-top:12px"><strong>Software Eng. Intern — Merck KGaA</strong><div class="muted">Jan 2024 — Aug 2025</div>
-            <div class="muted" style="margin-top:8px">Designed REST APIs, optimized high-traffic endpoints, and contributed to microservices design with observability and testing practices.</div></div>
-        </div>
-
-        <div class="card">
-          <div class="list-item"><strong>B.Tech — Computer Science</strong><div class="muted">Lovely Professional University · 2025 · CGPA: 7.7</div></div>
-          <div class="list-item"><strong>Higher Secondary — Narayana Junior College</strong><div class="muted">2020 · 96.5%</div></div>
-          <div class="list-item"><strong>Secondary — Narayana School</strong><div class="muted">2018 · CGPA: 10.0</div></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" style="margin-top:20px">
-      <h3>Contact</h3>
-      <div class="card" style="display:grid; grid-template-columns:1fr 320px; gap:12px; margin-top:12px">
-        <div>
-          <p class="muted">I'm open to backend & AI opportunities. Send a message or connect on LinkedIn.</p>
-          <form id="contactForm" onsubmit="return false;">
-            <div style="display:grid; gap:8px">
-              <input id="name" placeholder="Your name" style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit">
-              <input id="email" placeholder="Your email" style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit">
-              <textarea id="message" rows="4" placeholder="Message" style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit"></textarea>
-              <div style="display:flex; gap:8px">
-                <a id="sendBtn" class="btn" href="#">Send</a>
-                <a class="ghost" href="mailto:devisriprasad948@gmail.com">Email</a>
+  <!-- Hero Section -->
+  <section class="hero-section" id="about">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7">
+          <div class="badge bg-primary bg-gradient px-3 py-2 mb-3">
+            <i class="bi bi-code-square me-2"></i>Available for opportunities
+          </div>
+          <h1 class="hero-title" id="heroTitle">Building Scalable Backend Systems & AI-Powered Tools</h1>
+          <p class="hero-subtitle" id="heroSubtitle">
+            Backend Software Engineer specializing in Spring Boot microservices, real-time systems (SSE), Redis caching, and RAG-powered AI assistants. Passionate about performance optimization and practical ML integrations.
+          </p>
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <a href="#projects" class="btn btn-primary-custom">
+              <i class="bi bi-rocket-takeoff me-2"></i>View Projects
+            </a>
+            <a href="#contact" class="btn btn-outline-custom">
+              <i class="bi bi-envelope me-2"></i>Get in Touch
+            </a>
+          </div>
+          <div class="glass-card p-3 d-inline-block">
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+              <div>
+                <i class="bi bi-building text-primary fs-4"></i>
+                <span class="ms-2"><strong>Merck KGaA</strong> — Backend Engineer</span>
               </div>
+              <div class="text-muted">|</div>
+              <div class="text-muted">40% DB optimization · 70% automation · Real-time dashboards</div>
             </div>
-          </form>
+          </div>
         </div>
-        <div class="card" style="align-self:start;">
-          <div style="font-weight:700">Quick links</div>
-          <div style="margin-top:8px; display:flex; flex-direction:column; gap:8px">
-            <a class="ghost" href="https://github.com/dspStudent">GitHub</a>
-            <a class="ghost" href="https://www.linkedin.com/in/gudimetla-devi-sri-ranga-prasad">LinkedIn</a>
-            <a class="ghost" href="mailto:devisriprasad948@gmail.com">devisriprasad948@gmail.com</a>
-            <a class="ghost" href="#" onclick="downloadResume(); return false;">Download Resume (PDF)</a>
+        <div class="col-lg-5">
+          <div class="glass-card p-4 text-center float-animation">
+            <div class="profile-avatar mx-auto">DR</div>
+            <h3 class="fw-bold mb-2">Devi Sri Ranga Prasad</h3>
+            <p class="text-muted mb-3">Backend Engineer • Java • Spring Boot • AI/LLM</p>
+            <div class="d-flex gap-2 justify-content-center mb-4">
+              <span class="stat-badge"><i class="bi bi-briefcase me-2"></i>1+ Years</span>
+              <span class="stat-badge"><i class="bi bi-people me-2"></i>5k Users</span>
+            </div>
+            <div class="d-flex gap-2 justify-content-center">
+              <a href="https://github.com/dspStudent" class="social-link" target="_blank">
+                <i class="bi bi-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/gudimetla-devi-sri-ranga-prasad" class="social-link" target="_blank">
+                <i class="bi bi-linkedin"></i>
+              </a>
+              <a href="mailto:devisriprasad948@gmail.com" class="social-link">
+                <i class="bi bi-envelope"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+      <div class="scroll-indicator text-center text-muted">
+        <i class="bi bi-chevron-down fs-4"></i>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-      Built with ❤️ using HTML, anime.js and a sprinkle of CSS magic. — © Devi Sri Ranga Prasad
-    </footer>
-  </div>
+  <!-- Projects Section -->
+  <section id="projects" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-subtitle">Real-time systems · AI assistants · Developer tools</p>
+      </div>
+      <div class="row g-4" id="projectsGrid">
+        <div class="col-lg-6">
+          <div class="glass-card project-card">
+            <div class="project-icon"><i class="bi bi-graph-up"></i></div>
+            <h4 class="fw-bold mb-3">Central Monitoring Platform (CMP)</h4>
+            <p class="text-muted mb-3">Unified monitoring dashboard for 200+ applications with sub-second updates and automated incident management. Reduced database load by 40% through strategic Redis caching.</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="tech-badge">Java</span>
+              <span class="tech-badge">Spring Boot</span>
+              <span class="tech-badge">Redis</span>
+              <span class="tech-badge">InfluxDB</span>
+              <span class="tech-badge">Kafka</span>
+              <span class="tech-badge">SSE</span>
+            </div>
+            <a href="#" class="text-primary fw-bold">
+              Internal Platform <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="glass-card project-card">
+            <div class="project-icon"><i class="bi bi-shield-check"></i></div>
+            <h4 class="fw-bold mb-3">My Safety Agent</h4>
+            <p class="text-muted mb-3">Voice-enabled LLM assistant for Safety Data Sheets (SDS) using RAG architecture. Provides domain-aware answers and supports voice interaction for lab environments.</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">LangChain</span>
+              <span class="tech-badge">RAG</span>
+              <span class="tech-badge">MCP</span>
+              <span class="tech-badge">NLP</span>
+            </div>
+            <a href="#" class="text-primary fw-bold">
+              AI Assistant <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="glass-card project-card">
+            <div class="project-icon"><i class="bi bi-code-slash"></i></div>
+            <h4 class="fw-bold mb-3">My Coding Assistant</h4>
+            <p class="text-muted mb-3">Automated code generation and bug-pattern detection system. Improved team velocity and test coverage through intelligent code analysis and suggestions.</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="tech-badge">Python</span>
+              <span class="tech-badge">LangChain</span>
+              <span class="tech-badge">ML</span>
+              <span class="tech-badge">Code Analysis</span>
+            </div>
+            <a href="#" class="text-primary fw-bold">
+              Developer Tool <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="glass-card project-card">
+            <div class="project-icon"><i class="bi bi-gear-wide-connected"></i></div>
+            <h4 class="fw-bold mb-3">Monitoring + Automation Integrations</h4>
+            <p class="text-muted mb-3">Incident auto-ticketing and scheduled pipelines bridging monitoring and ITSM systems. Automated 70% of manual workflows.</p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <span class="tech-badge">MuleSoft</span>
+              <span class="tech-badge">IT4YOU</span>
+              <span class="tech-badge">Icinga2</span>
+            </div>
+            <a href="#" class="text-primary fw-bold">
+              Integration Platform <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- Contact Section -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Let's Connect</h2>
+        <p class="section-subtitle">Open to backend & AI opportunities</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="glass-card p-4">
+            <h5 class="fw-bold mb-4">Send a Message</h5>
+            <form id="contactForm">
+              <div class="mb-3">
+                <label class="form-label">Your Name</label>
+                <input type="text" class="form-control form-control-custom" id="name" placeholder="John Doe" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Your Email</label>
+                <input type="email" class="form-control form-control-custom" id="email" placeholder="john@example.com" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Message</label>
+                <textarea class="form-control form-control-custom" id="message" rows="5" placeholder="Tell me about your project or opportunity..." required></textarea>
+              </div>
+              <div class="d-flex gap-3">
+                <button type="submit" class="btn btn-primary-custom">
+                  <i class="bi bi-send me-2"></i>Send Message
+                </button>
+                <a href="mailto:devisriprasad948@gmail.com" class="btn btn-outline-custom">
+                  <i class="bi bi-envelope me-2"></i>Direct Email
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="glass-card p-4 mb-4">
+            <h5 class="fw-bold mb-4">Contact Information</h5>
+            <div class="d-flex align-items-start mb-3">
+              <i class="bi bi-envelope text-primary fs-4 me-3"></i>
+              <div>
+                <div class="fw-bold">Email</div>
+                <a href="mailto:devisriprasad948@gmail.com" class="text-muted text-decoration-none">devisriprasad948@gmail.com</a>
+              </div>
+            </div>
+            <div class="d-flex align-items-start mb-3">
+              <i class="bi bi-linkedin text-primary fs-4 me-3"></i>
+              <div>
+                <div class="fw-bold">LinkedIn</div>
+                <a href="https://www.linkedin.com/in/gudimetla-devi-sri-ranga-prasad" target="_blank" class="text-muted text-decoration-none">Connect with me</a>
+              </div>
+            </div>
+            <div class="d-flex align-items-start mb-3">
+              <i class="bi bi-github text-primary fs-4 me-3"></i>
+              <div>
+                <div class="fw-bold">GitHub</div>
+                <a href="https://github.com/dspStudent" target="_blank" class="text-muted text-decoration-none">View my code</a>
+              </div>
+            </div>
+            <div class="d-flex align-items-start">
+              <i class="bi bi-geo-alt text-primary fs-4 me-3"></i>
+              <div>
+                <div class="fw-bold">Location</div>
+                <div class="text-muted">Darmstadt, Germany</div>
+              </div>
+            </div>
+          </div>
+          <div class="glass-card p-4">
+            <h5 class="fw-bold mb-3">Quick Actions</h5>
+            <div class="d-grid gap-2">
+              <a href="#" onclick="downloadResume(); return false;" class="btn btn-outline-custom text-start">
+                <i class="bi bi-file-earmark-pdf me-2"></i>Download Resume
+              </a>
+              <a href="https://github.com/dspStudent" target="_blank" class="btn btn-outline-custom text-start">
+                <i class="bi bi-github me-2"></i>View GitHub Profile
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4">
+          <h5 class="fw-bold mb-3">Devi Sri Ranga Prasad</h5>
+          <p class="text-muted">Backend Software Engineer passionate about building scalable systems and AI-powered solutions.</p>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="fw-bold mb-3">Quick Links</h6>
+          <div class="d-flex flex-column gap-2">
+            <a href="#about" class="text-muted text-decoration-none">About</a>
+            <a href="#projects" class="text-muted text-decoration-none">Projects</a>
+            <a href="#skills" class="text-muted text-decoration-none">Skills</a>
+            <a href="#experience" class="text-muted text-decoration-none">Experience</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="fw-bold mb-3">Connect</h6>
+          <div class="d-flex gap-2">
+            <a href="https://github.com/dspStudent" class="social-link" target="_blank">
+              <i class="bi bi-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/gudimetla-devi-sri-ranga-prasad" class="social-link" target="_blank">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="mailto:devisriprasad948@gmail.com" class="social-link">
+              <i class="bi bi-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center pt-4 border-top" style="border-color: var(--glass-border) !important;">
+        <p class="mb-0">
+          <i class="bi bi-heart-fill text-danger"></i> Built with Bootstrap 5 & Anime.js © 2025 Devi Sri Ranga Prasad
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  
   <script>
-    // Entrance animation for header elements
-    anime.timeline({delay:400})
-      .add({targets:'#logo', translateY:[-20,0], opacity:[0,1], duration:700, easing:'easeOutExpo'})
-      .add({targets:'#nav a', translateY:[-12,0], opacity:[0,1], duration:600, delay: anime.stagger(80), easing:'easeOutExpo'}, '-=300')
-      .add({targets:'#heroCard', translateX:[-30,0], opacity:[0,1], duration:900, easing:'easeOutExpo'}, '-=600')
-      .add({targets:'#profileCard', translateX:[30,0], opacity:[0,1], duration:900, easing:'easeOutExpo'}, '-=900');
-
-    // Staggered projects reveal
-    anime({
-      targets:'.project',
-      translateY: [18,0],
-      opacity:[0,1],
-      delay: anime.stagger(120, {start:900}),
-      duration:800,
-      easing:'easeOutExpo'
-    });
-
-    // Skill bars animate on appear
-    function animateSkillBars(){
-      document.querySelectorAll('.bar i').forEach((el,idx)=>{
-        var val = el.getAttribute('data-val') || 60;
-        anime({targets:el, width: [0, val+'%'], duration:900, delay: idx*120+400, easing:'easeOutQuad'});
-      });
+    // Create particle background
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particlesContainer.appendChild(particle);
+        
+        anime({
+          targets: particle,
+          translateY: [0, Math.random() * 100 - 50],
+          translateX: [0, Math.random() * 100 - 50],
+          opacity: [0.3, 0, 0.3],
+          scale: [1, 1.5, 1],
+          duration: Math.random() * 3000 + 2000,
+          easing: 'easeInOutSine',
+          loop: true,
+          delay: Math.random() * 1000
+        });
+      }
     }
-
-    // intersection observer for sections
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
-          e.target.classList.add('inview');
-          if(e.target.id === 'skills') animateSkillBars();
-          anime({targets: e.target.querySelectorAll('.card, .project, .two-col > .card'), translateY:[10,0], opacity:[0,1], duration:700, delay: anime.stagger(80), easing:'easeOutExpo'});
+    
+    createParticles();
+    
+    // Navbar animation on scroll
+    let lastScroll = 0;
+    const navbar = document.querySelector('.navbar');
+    
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 100) {
+        navbar.style.background = 'rgba(10, 14, 26, 0.95)';
+        navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
+      } else {
+        navbar.style.background = 'rgba(10, 14, 26, 0.8)';
+        navbar.style.boxShadow = 'none';
+      }
+      
+      lastScroll = currentScroll;
+    });
+    
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Close mobile menu if open
+          const navCollapse = document.querySelector('.navbar-collapse');
+          if (navCollapse.classList.contains('show')) {
+            bootstrap.Collapse.getInstance(navCollapse).hide();
+          }
         }
       });
-    }, {threshold:0.12});
-
-    document.querySelectorAll('section').forEach(s => io.observe(s));
-
-    // subtle floating animation for background shapes
-    anime({targets:'.bg-shape', translateY:[0,20], translateX:[0,20], direction:'alternate', loop:true, easing:'easeInOutSine', duration:8000});
-    anime({targets:'.bg-shape-2', translateY:[0,-18], translateX:[0,-16], direction:'alternate', loop:true, easing:'easeInOutSine', duration:9000});
-
-    // typing-like accent on hero title using anime.js
-    const title = document.querySelector('.title');
-    const text = title.textContent;
-    title.textContent = '';
-    text.split('').forEach(ch => {
-      const span = document.createElement('span'); span.textContent = ch; span.style.opacity = 0; title.appendChild(span);
     });
-    anime.timeline({loop:false}).add({
-      targets:'.title span', opacity:[0,1], translateY:[8,0], delay: anime.stagger(28), duration:700, easing:'easeOutExpo'
+    
+    // Entrance animations
+    anime.timeline({ delay: 300 })
+      .add({
+        targets: '#brand',
+        translateY: [-20, 0],
+        opacity: [0, 1],
+        duration: 700,
+        easing: 'easeOutExpo'
+      })
+      .add({
+        targets: '.nav-item',
+        translateY: [-15, 0],
+        opacity: [0, 1],
+        duration: 600,
+        delay: anime.stagger(80),
+        easing: 'easeOutExpo'
+      }, '-=400')
+      .add({
+        targets: '#heroTitle',
+        translateX: [-50, 0],
+        opacity: [0, 1],
+        duration: 900,
+        easing: 'easeOutExpo'
+      }, '-=300')
+      .add({
+        targets: '#heroSubtitle',
+        translateX: [-50, 0],
+        opacity: [0, 1],
+        duration: 900,
+        easing: 'easeOutExpo'
+      }, '-=700')
+      .add({
+        targets: '.hero-section .btn',
+        translateY: [20, 0],
+        opacity: [0, 1],
+        duration: 700,
+        delay: anime.stagger(100),
+        easing: 'easeOutExpo'
+      }, '-=500')
+      .add({
+        targets: '.hero-section .glass-card',
+        scale: [0.9, 1],
+        opacity: [0, 1],
+        duration: 900,
+        easing: 'easeOutExpo'
+      }, '-=800');
+    
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          
+          // Animate skill bars
+          if (entry.target.id === 'skills') {
+            animateSkillBars();
+          }
+          
+          // Animate cards
+          const cards = entry.target.querySelectorAll('.glass-card, .project-card');
+          anime({
+            targets: cards,
+            translateY: [30, 0],
+            opacity: [0, 1],
+            duration: 800,
+            delay: anime.stagger(100),
+            easing: 'easeOutExpo'
+          });
+        }
+      });
+    }, observerOptions);
+    
+    // Observe all sections
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
     });
-
-    // contact send button - prepares mailto link
-    document.getElementById('sendBtn').addEventListener('click', ()=>{
-      const n = document.getElementById('name').value || 'Friend';
-      const e = document.getElementById('email').value || '';
-      const m = document.getElementById('message').value || '';
-      const subject = encodeURIComponent('Portfolio contact — '+n);
-      const body = encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\n'+m);
-      window.location.href = 'mailto:devisriprasad948@gmail.com?subject='+subject+'&body='+body;
+    
+    // Animate skill bars
+    function animateSkillBars() {
+      const skillBars = document.querySelectorAll('.skill-progress');
+      skillBars.forEach((bar, index) => {
+        const progress = bar.getAttribute('data-progress');
+        anime({
+          targets: bar,
+          width: [0, progress + '%'],
+          duration: 1500,
+          delay: index * 150,
+          easing: 'easeOutExpo'
+        });
+      });
+    }
+    
+    // Project cards hover effect
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        anime({
+          targets: this.querySelector('.project-icon'),
+          rotate: [0, 360],
+          scale: [1, 1.1, 1],
+          duration: 600,
+          easing: 'easeOutExpo'
+        });
+      });
     });
-
-    // small helper: download resume placeholder (replace with real PDF path if available)
-    function downloadResume(){
+    
+    // Contact form submission
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      const subject = encodeURIComponent(`Portfolio Contact — ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+      
+      window.location.href = `mailto:devisriprasad948@gmail.com?subject=${subject}&body=${body}`;
+    });
+    
+    // Download resume function
+    function downloadResume() {
       const link = document.createElement('a');
-      // NOTE: replace the href below with the actual resume URL or file path
       link.href = 'resume-devi-sri.pdf';
       link.download = 'Devi-Sri-Ranga-Prasad-Resume.pdf';
       document.body.appendChild(link);
       link.click();
       link.remove();
+      
+      // Show feedback
+      const btn = event.target.closest('a');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="bi bi-check-circle me-2"></i>Downloaded!';
+      btn.classList.add('btn-primary-custom');
+      btn.classList.remove('btn-outline-custom');
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.classList.remove('btn-primary-custom');
+        btn.classList.add('btn-outline-custom');
+      }, 2000);
     }
-
-    // Smooth scroll for nav
-    document.querySelectorAll('nav a').forEach(a=>{
-      a.addEventListener('click', (ev)=>{
-        ev.preventDefault();
-        const id = a.getAttribute('href').slice(1);
-        document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+    
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const heroSection = document.querySelector('.hero-section');
+      if (heroSection) {
+        heroSection.style.transform = `translateY(${scrolled * 0.3}px)`;
+        heroSection.style.opacity = 1 - (scrolled / 800);
+      }
+    });
+    
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 200)) {
+          current = section.getAttribute('id');
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
       });
     });
-
   </script>
 </body>
 </html>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-subtitle">Languages, frameworks, and infrastructure</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="glass-card p-4">
+            <h5 class="fw-bold mb-4"><i class="bi bi-code-square text-primary me-2"></i>Backend & Languages</h5>
+            <div class="skill-item">
+              <div class="skill-label">
+                <span>Java</span>
+                <span class="text-primary">90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-progress="90"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label">
+                <span>Spring Boot</span>
+                <span class="text-primary">86%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-progress="86"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label">
+                <span>Microservices</span>
+                <span class="text-primary">82%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-progress="82"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="glass-card p-4">
+            <h5 class="fw-bold mb-4"><i class="bi bi-database text-primary me-2"></i>Data & AI</h5>
+            <div class="skill-item">
+              <div class="skill-label">
+                <span>Redis / Caching</span>
+                <span class="text-primary">78%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-progress="78"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label">
+                <span>Python / LangChain</span>
+                <span class="text-primary">72%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-progress="72"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-label">
+                <span>Elasticsearch / DBs</span>
+                <span class="text-primary">70%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-progress="70"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Additional Skills Grid -->
+      <div class="row g-4 mt-4">
+        <div class="col-md-3 col-sm-6">
+          <div class="glass-card p-3 text-center">
+            <i class="bi bi-server text-primary fs-2 mb-2"></i>
+            <div class="fw-bold">Kafka</div>
+            <small class="text-muted">Event Streaming</small>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="glass-card p-3 text-center">
+            <i class="bi bi-cloud text-primary fs-2 mb-2"></i>
+            <div class="fw-bold">Docker</div>
+            <small class="text-muted">Containerization</small>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="glass-card p-3 text-center">
+            <i class="bi bi-git text-primary fs-2 mb-2"></i>
+            <div class="fw-bold">Git</div>
+            <small class="text-muted">Version Control</small>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="glass-card p-3 text-center">
+            <i class="bi bi-diagram-3 text-primary fs-2 mb-2"></i>
+            <div class="fw-bold">REST APIs</div>
+            <small class="text-muted">API Design</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Experience & Education</h2>
+        <p class="section-subtitle">Professional journey and academic background</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="glass-card p-4">
+            <h5 class="fw-bold mb-4"><i class="bi bi-briefcase text-primary me-2"></i>Professional Experience</h5>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h6 class="fw-bold">Software Engineer</h6>
+              <div class="text-primary mb-2">Merck KGaA · Aug 2025 — Present</div>
+              <p class="text-muted mb-0">Built Spring Boot microservices for enterprise monitoring, implemented Redis caching (40% DB load reduction), real-time dashboards using SSE, and automated incident pipelines serving 5,000+ users.</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h6 class="fw-bold">Software Engineer Intern</h6>
+              <div class="text-primary mb-2">Merck KGaA · Jan 2024 — Aug 2025</div>
+              <p class="text-muted mb-0">Designed REST APIs, optimized high-traffic endpoints, and contributed to microservices design with observability and testing practices.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="glass-card p-4">
+            <h5 class="fw-bold mb-4"><i class="bi bi-mortarboard text-primary me-2"></i>Education</h5>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h6 class="fw-bold">B.Tech — Computer Science</h6>
+              <div class="text-primary mb-2">Lovely Professional University · 2025</div>
+              <p class="text-muted mb-0">CGPA: 7.7 / 10.0</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h6 class="fw-bold">Higher Secondary Education</h6>
+              <div class="text-primary mb-2">Narayana Junior College · 2020</div>
+              <p class="text-muted mb-0">Percentage: 96.5%</p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h6 class="fw-bold">Secondary Education</h6>
+              <div class="text-primary mb-2">Narayana School · 2018</div>
+              <p class="text-muted mb-0">CGPA: 10.0 / 10.0</p>
+            </div>
+          </div>
+        </div>
+      </div>
