@@ -1,0 +1,143 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+
+\geometry{left=0.5in, right=0.5in, top=0.4in, bottom=0.4in}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\usepackage{times}
+
+\hypersetup{colorlinks=true, linkcolor=black, urlcolor=black, pdfborder={0 0 0}}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\vspace{-2pt}\titlerule\vspace{2pt}]
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+
+% Compact header design
+\newcommand{\compactheader}[5]{%
+    {\centering\Large\bfseries #1\par}
+    \vspace{2pt}
+    {\centering\small
+    \href{mailto:#2}{#2} $|$ #3 $|$ \href{#4}{LinkedIn} $|$ \href{#5}{GitHub}
+    \par}
+    \vspace{4pt}
+}
+
+\newcommand{\experience}[4]{%
+    \textbf{#1} \hfill \textbf{#2}\\
+    \textit{#3} \hfill \textit{#4}\vspace{1pt}%
+}
+\newcommand{\project}[2]{\textbf{#1} \hfill \textbf{#2}\vspace{1pt}}
+
+\begin{document}
+
+\compactheader{Devi Sri Ranga Prasad}{devisriprasad948@gmail.com}{+91-7032857480}{https://www.linkedin.com/in/gudimetla-devi-sri-ranga-prasad}{https://github.com/dspStudent}
+
+\section*{PROFESSIONAL SUMMARY}
+Backend Software Engineer with 1+ years building Java Spring Boot microservices for 5,000+ users. Delivered 40\% performance improvements through Redis caching, automated 70\% of incident responses, and built real-time monitoring systems processing 50,000+ daily API requests with 99.9\% uptime.
+
+\section*{TECHNICAL SKILLS}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\textbf{Languages:} & Java (8/11/17) • Python • JavaScript • C++ • SQL • C • R\\[1pt]
+\textbf{Frameworks:} & Spring Boot • Spring WebFlux • Spring Security • Microservices • REST APIs • Vert.x • React js\\[1pt]
+\textbf{Databases:} & MySQL • MongoDB • Redis • InfluxDB • Elasticsearch \\[1pt]
+\textbf{Tools \& DevOps:} & Git • Docker • Maven • JIRA • JPA • JDBC • Kafka \\[1pt]
+\textbf{Practices:} & Agile/Scrum • CI/CD • Unit Testing • Code Reviews • Technical Documentation \\
+\end{tabularx}
+
+\section*{PROFESSIONAL EXPERIENCE}
+
+\experience{Software Engineer}{Aug 2024 -- Present}{Merck KGaA}{Full-time}
+\begin{itemize}[leftmargin=1.3em, itemsep=0pt, parsep=0pt, topsep=1pt]
+    \item Delivered end-to-end feature development with complete ownership of lifecycle from requirements to production handoff
+    \item Participated in production deployments and critical hotfixes, resolving live incidents within SLA to maintain 99.9\% uptime
+    \item Reduced database load by 40\% and API latency from 2s to 500ms by implementing Redis caching strategy
+    \item Developed real-time monitoring dashboard using Spring WebFlux and SSE, processing 50,000+ daily requests
+    \item Automated incident response system with IT4YOU integration, reducing manual intervention by 70\%
+    \item Mentored junior developers through code reviews, establishing Spring Boot best practices for team of 15+ engineers
+\end{itemize}
+
+\vspace{2pt}
+
+\experience{Software Engineering Intern}{Jan 2024 -- Aug 2024}{Merck KGaA}{Internship}
+\begin{itemize}[leftmargin=1.3em, itemsep=0pt, parsep=0pt, topsep=1pt]
+    \item Developed 25+ RESTful APIs using Java and Spring Boot, serving 10,000+ users across 8 business-critical platforms
+    \item Designed microservices components with MySQL, InfluxDB, and Elasticsearch for scalable data access patterns
+    \item Achieved 95\% code quality through comprehensive unit testing and peer code review participation
+    \item Collaborated with cross-functional teams on API design, integration testing, and sprint planning activities
+\end{itemize}
+
+\section*{KEY PROJECTS}
+
+\project{Central Monitoring Platform (CMP)}{Jan 2024 -- Present}
+
+\textbf{Tech Stack:} Java • Spring Boot • Microservices • Redis • MySQL • InfluxDB • Elasticsearch • Kafka
+
+\begin{itemize}[leftmargin=1.3em, itemsep=0pt, parsep=0pt, topsep=1pt]
+    \item Built enterprise monitoring dashboard providing real-time health metrics for 200+ critical applications
+    \item Implemented role-based access control using Spring Security, managing 1,000+ stakeholder permissions
+    \item Developed Spring WebFlux SSE pipeline delivering real-time updates across 100+ screens with sub-second latency
+    \item Built Kafka-based notification service integrating with ticketing systems for centralized alert management
+\end{itemize}
+
+\vspace{2pt}
+
+\project{AI-Powered Safety Assistant}{Jun 2024 -- Present}
+
+\textbf{Tech Stack:} Python • LangChain • NLP • RAG Architecture • Model Context Protocol
+
+\begin{itemize}[leftmargin=1.3em, itemsep=0pt, parsep=0pt, topsep=1pt]
+    \item Developed voice-enabled AI assistant for hands-free access to 1,000+ Safety Data Sheets in laboratory environments
+    \item Migrated to Model Context Protocol architecture, improving modularity by 60\% and reducing deployment time by 45\%
+    \item Designed RAG pipeline for intelligent document retrieval serving 200+ users with 90\%+ accuracy
+\end{itemize}
+
+\vspace{2pt}
+
+\project{AI Coding Assistant}{Mar 2024 -- Sep 2024}
+
+\textbf{Tech Stack:} Python • LangChain • Machine Learning • NLP
+
+\begin{itemize}[leftmargin=1.3em, itemsep=0pt, parsep=0pt, topsep=1pt]
+    \item Developed LLM-powered code generation tools using LangChain in Jupyter notebooks
+    \item Created bug detection system by integrating LLMs with custom analysis tools
+    \item Built code quality analysis workflows connecting LLMs to existing codebases for automated reviews
+\end{itemize}
+
+\section*{EDUCATION}
+
+\textbf{Bachelor of Technology in Computer Science} \hfill \textbf{2025}
+
+Lovely Professional University, Punjab, India \hfill CGPA: 7.7/10.0
+
+\textbf{Relevant Coursework:} Data Structures • Algorithms • Database Systems • Software Engineering • System Design
+
+\vspace{2pt}
+
+\textbf{Higher Secondary School Certificate} \hfill \textbf{2020}
+
+Narayana Junior College, Vijayawada, India \hfill Percentage: 96.5\%
+
+\vspace{2pt}
+
+\textbf{Secondary School Certificate} \hfill \textbf{2018}
+
+Narayana School, Guntur, India \hfill CGPA: 10.0/10.0
+
+\section*{CERTIFICATIONS \& ACHIEVEMENTS}
+
+\begin{itemize}[leftmargin=1.3em, itemsep=0pt, parsep=0pt, topsep=1pt]
+    \item \textbf{Java Spring Boot \& Spring Reactive Certification} -- FreeCodeCamp (2024)
+    \item \textbf{Generative AI Certification} -- FreeCodeCamp (2024)
+    \item \textbf{Competitive Programming:} Top 5\% globally -- LeetCode (1600+) • Codeforces (1300+) • CodeChef (1400+)
+    \item Promoted from Intern to Full-time Engineer within 12 months based on exceptional technical contributions
+\end{itemize}
+
+\end{document}
