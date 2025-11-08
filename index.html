@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Devi Sri — Software Engineer</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#0354a6; --muted:#94a3b8; --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius:14px; --maxw:1100px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; background: radial-gradient(1200px 600px at 10% 10%, rgba(3,84,166,0.12), transparent), radial-gradient(800px 400px at 90% 90%, rgba(0,153,255,0.06), transparent), var(--bg); color:#e6eef8}
+    .wrap{max-width:var(--maxw); margin:36px auto; padding:28px;}
+    header{display:flex; align-items:center; justify-content:space-between; gap:24px}
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:56px; height:56px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#00a3ff); display:grid; place-items:center; font-weight:800; font-size:20px; color:white}
+    nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:600}
+    nav a:hover{color:var(--accent)}
+    .hero{display:grid; grid-template-columns:1fr 380px; gap:28px; margin-top:26px}
+    .card{background:linear-gradient(180deg,var(--card), rgba(255,255,255,0.02)); border-radius:var(--radius); padding:22px; box-shadow: 0 6px 30px rgba(2,6,23,0.6);}
+    .title{font-size:28px; font-weight:800; color:white; letter-spacing:-0.5px}
+    .subtitle{color:var(--muted); margin-top:6px}
+    .cta{margin-top:18px; display:flex; gap:12px}
+    .btn{background:linear-gradient(90deg,var(--accent),#00a3ff); padding:10px 14px; border-radius:10px; color:white; font-weight:700; text-decoration:none}
+    .ghost{border:1px solid rgba(255,255,255,0.06); padding:10px 14px; border-radius:10px; color:var(--muted); text-decoration:none}
+    .profile-card{display:flex; flex-direction:column; align-items:center; gap:12px}
+    .avatar{width:120px; height:120px; border-radius:18px; background:linear-gradient(135deg,#083b6f,#0d6efd); display:grid; place-items:center; font-size:40px; font-weight:800}
+    .meta{color:var(--muted); text-align:center}
+    .stats{display:flex; gap:10px; margin-top:10px}
+    .stat{background:var(--glass); padding:8px 12px; border-radius:10px; font-weight:700; color:white}
+
+    /* Projects */
+    .projects{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:18px}
+    .project{padding:14px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); border:1px solid var(--glass-2)}
+    .project h4{margin:0 0 8px 0}
+    .stack{color:var(--muted); font-size:13px}
+
+    /* Skills */
+    .skills{display:grid; gap:10px}
+    .skill{display:flex; align-items:center; gap:12px}
+    .bar{flex:1; height:10px; background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:999px; overflow:hidden}
+    .bar > i{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--accent),#00a3ff); border-radius:999px}
+
+    /* Experience & Education */
+    .two-col{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
+    .list-item{margin-bottom:10px}
+
+    footer{margin-top:32px; color:var(--muted); font-size:14px; text-align:center}
+
+    /* floating shapes */
+    .bg-shape{position:fixed; right:-120px; top:-60px; width:420px; height:420px; border-radius:60px; filter: blur(60px); opacity:0.12; background:linear-gradient(135deg,#00a3ff,#003a8c); pointer-events:none}
+    .bg-shape-2{left:-120px; bottom:-80px; width:360px; height:360px; border-radius:50px; filter: blur(48px); opacity:0.08; background:linear-gradient(135deg,#00d4ff,#1b7fd6); pointer-events:none}
+
+    /* responsive */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr}
+      nav{display:none}
+      .wrap{padding:18px}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .chip{background:rgba(255,255,255,0.02); padding:6px 8px; border-radius:999px; font-size:13px}
+    a.project-link{display:inline-block; margin-top:10px; font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="bg-shape"></div>
+  <div class="bg-shape-2"></div>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" id="logo">DS</div>
+        <div>
+          <div style="font-weight:800; font-size:16px">Devi Sri Ranga Prasad</div>
+          <div class="muted" style="font-size:13px">Backend Software Engineer · Java · Microservices · AI</div>
+        </div>
+      </div>
+      <nav id="nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card" id="heroCard">
+        <div class="title">Hi — I'm Devi. I build reliable backend systems & AI-enabled developer tools.</div>
+        <div class="subtitle">Experienced in Spring Boot microservices, real-time systems (SSE), Redis caching, and RAG-powered AI assistants. I focus on performance, scalability, and practical ML integrations.</div>
+        <div class="cta">
+          <a class="btn" href="#projects">See projects</a>
+          <a class="ghost" href="mailto:devisriprasad948@gmail.com">Contact me</a>
+        </div>
+
+        <div style="margin-top:18px" id="highlights">
+          <div class="chip">Merck KGaA — Backend Engineer</div>
+          <div style="height:6px"></div>
+          <div class="muted">Performance optimizations: 40% DB load reduction · 70% automated workflows · Real-time dashboards with SSE</div>
+        </div>
+      </div>
+
+      <aside class="card profile-card" id="profileCard">
+        <div class="avatar">DR</div>
+        <div style="font-weight:700">Devi Sri Ranga Prasad</div>
+        <div class="meta">Backend Engineer • Java, Spring Boot • AI/LLM enthusiast</div>
+        <div class="stats">
+          <div class="stat">1+ yrs exp</div>
+          <div class="stat">5k users</div>
+        </div>
+        <div style="width:100%; margin-top:14px; display:grid; gap:8px">
+          <a class="ghost" href="https://www.linkedin.com/in/gudimetla-devi-sri-ranga-prasad">LinkedIn</a>
+          <a class="ghost" href="https://github.com/dspStudent">GitHub</a>
+        </div>
+      </aside>
+    </section>
+
+    <section id="projects" style="margin-top:18px">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:8px">
+        <h3 style="margin:0">Selected Projects</h3>
+        <div class="muted">Real-time systems · AI assistants · Developer tools</div>
+      </div>
+
+      <div class="projects" id="projectsGrid">
+        <div class="project">
+          <h4>Central Monitoring Platform (CMP)</h4>
+          <div class="stack">Java · Spring Boot · Redis · InfluxDB · Kafka · SSE</div>
+          <p class="muted">Unified monitoring dashboard for 200+ applications with sub-second updates and automated incident management.</p>
+          <a class="project-link" href="https://cmp.merckgroup.com" target="_blank">Live (internal)</a>
+        </div>
+
+        <div class="project">
+          <h4>My Safety Agent</h4>
+          <div class="stack">Python · LangChain · RAG · MCP · NLP</div>
+          <p class="muted">Voice-enabled LLM assistant for Safety Data Sheets (SDS) — RAG for domain-aware answers and voice interaction in labs.</p>
+        </div>
+
+        <div class="project">
+          <h4>My Coding Assistant</h4>
+          <div class="stack">Python · LangChain · ML · Code Analysis</div>
+          <p class="muted">Automated code generation & bug-pattern detection improving team velocity and test coverage.</p>
+        </div>
+
+        <div class="project">
+          <h4>Monitoring + Automation Integrations</h4>
+          <div class="stack">MuleSoft · IT4YOU · Icinga2</div>
+          <p class="muted">Incident auto-ticketing and scheduled pipelines to bridge monitoring & ITSM systems.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" style="margin-top:20px">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+        <h3 style="margin:0">Skills</h3>
+        <div class="muted">Languages, frameworks and infra</div>
+      </div>
+
+      <div class="card skills" style="margin-top:12px">
+        <div class="skill"><div style="width:140px">Java</div><div class="bar"><i data-val="90"></i></div></div>
+        <div class="skill"><div style="width:140px">Spring Boot</div><div class="bar"><i data-val="86"></i></div></div>
+        <div class="skill"><div style="width:140px">Microservices</div><div class="bar"><i data-val="82"></i></div></div>
+        <div class="skill"><div style="width:140px">Redis / Caching</div><div class="bar"><i data-val="78"></i></div></div>
+        <div class="skill"><div style="width:140px">Python / LangChain</div><div class="bar"><i data-val="72"></i></div></div>
+        <div class="skill"><div style="width:140px">Elasticsearch / DBs</div><div class="bar"><i data-val="70"></i></div></div>
+      </div>
+    </section>
+
+    <section id="experience" style="margin-top:20px">
+      <div style="display:flex; align-items:center; justify-content:space-between">
+        <h3 style="margin:0">Experience & Education</h3>
+        <div class="muted">Merck KGaA · Lovely Professional University</div>
+      </div>
+
+      <div class="two-col" style="margin-top:12px">
+        <div class="card">
+          <div class="list-item"><strong>Software Engineer — Merck KGaA</strong><div class="muted">Aug 2025 — Present · Darmstadt, Germany</div>
+            <div class="muted" style="margin-top:8px">Built Spring Boot microservices for enterprise monitoring, implemented Redis caching (40% DB load reduction), real-time dashboards using SSE, and automated incident pipelines.</div></div>
+
+          <div class="list-item" style="margin-top:12px"><strong>Software Eng. Intern — Merck KGaA</strong><div class="muted">Jan 2024 — Aug 2025</div>
+            <div class="muted" style="margin-top:8px">Designed REST APIs, optimized high-traffic endpoints, and contributed to microservices design with observability and testing practices.</div></div>
+        </div>
+
+        <div class="card">
+          <div class="list-item"><strong>B.Tech — Computer Science</strong><div class="muted">Lovely Professional University · 2025 · CGPA: 7.7</div></div>
+          <div class="list-item"><strong>Higher Secondary — Narayana Junior College</strong><div class="muted">2020 · 96.5%</div></div>
+          <div class="list-item"><strong>Secondary — Narayana School</strong><div class="muted">2018 · CGPA: 10.0</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:20px">
+      <h3>Contact</h3>
+      <div class="card" style="display:grid; grid-template-columns:1fr 320px; gap:12px; margin-top:12px">
+        <div>
+          <p class="muted">I'm open to backend & AI opportunities. Send a message or connect on LinkedIn.</p>
+          <form id="contactForm" onsubmit="return false;">
+            <div style="display:grid; gap:8px">
+              <input id="name" placeholder="Your name" style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit">
+              <input id="email" placeholder="Your email" style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit">
+              <textarea id="message" rows="4" placeholder="Message" style="padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:inherit"></textarea>
+              <div style="display:flex; gap:8px">
+                <a id="sendBtn" class="btn" href="#">Send</a>
+                <a class="ghost" href="mailto:devisriprasad948@gmail.com">Email</a>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="card" style="align-self:start;">
+          <div style="font-weight:700">Quick links</div>
+          <div style="margin-top:8px; display:flex; flex-direction:column; gap:8px">
+            <a class="ghost" href="https://github.com/dspStudent">GitHub</a>
+            <a class="ghost" href="https://www.linkedin.com/in/gudimetla-devi-sri-ranga-prasad">LinkedIn</a>
+            <a class="ghost" href="mailto:devisriprasad948@gmail.com">devisriprasad948@gmail.com</a>
+            <a class="ghost" href="#" onclick="downloadResume(); return false;">Download Resume (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Built with ❤️ using HTML, anime.js and a sprinkle of CSS magic. — © Devi Sri Ranga Prasad
+    </footer>
+  </div>
+
+  <script>
+    // Entrance animation for header elements
+    anime.timeline({delay:400})
+      .add({targets:'#logo', translateY:[-20,0], opacity:[0,1], duration:700, easing:'easeOutExpo'})
+      .add({targets:'#nav a', translateY:[-12,0], opacity:[0,1], duration:600, delay: anime.stagger(80), easing:'easeOutExpo'}, '-=300')
+      .add({targets:'#heroCard', translateX:[-30,0], opacity:[0,1], duration:900, easing:'easeOutExpo'}, '-=600')
+      .add({targets:'#profileCard', translateX:[30,0], opacity:[0,1], duration:900, easing:'easeOutExpo'}, '-=900');
+
+    // Staggered projects reveal
+    anime({
+      targets:'.project',
+      translateY: [18,0],
+      opacity:[0,1],
+      delay: anime.stagger(120, {start:900}),
+      duration:800,
+      easing:'easeOutExpo'
+    });
+
+    // Skill bars animate on appear
+    function animateSkillBars(){
+      document.querySelectorAll('.bar i').forEach((el,idx)=>{
+        var val = el.getAttribute('data-val') || 60;
+        anime({targets:el, width: [0, val+'%'], duration:900, delay: idx*120+400, easing:'easeOutQuad'});
+      });
+    }
+
+    // intersection observer for sections
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('inview');
+          if(e.target.id === 'skills') animateSkillBars();
+          anime({targets: e.target.querySelectorAll('.card, .project, .two-col > .card'), translateY:[10,0], opacity:[0,1], duration:700, delay: anime.stagger(80), easing:'easeOutExpo'});
+        }
+      });
+    }, {threshold:0.12});
+
+    document.querySelectorAll('section').forEach(s => io.observe(s));
+
+    // subtle floating animation for background shapes
+    anime({targets:'.bg-shape', translateY:[0,20], translateX:[0,20], direction:'alternate', loop:true, easing:'easeInOutSine', duration:8000});
+    anime({targets:'.bg-shape-2', translateY:[0,-18], translateX:[0,-16], direction:'alternate', loop:true, easing:'easeInOutSine', duration:9000});
+
+    // typing-like accent on hero title using anime.js
+    const title = document.querySelector('.title');
+    const text = title.textContent;
+    title.textContent = '';
+    text.split('').forEach(ch => {
+      const span = document.createElement('span'); span.textContent = ch; span.style.opacity = 0; title.appendChild(span);
+    });
+    anime.timeline({loop:false}).add({
+      targets:'.title span', opacity:[0,1], translateY:[8,0], delay: anime.stagger(28), duration:700, easing:'easeOutExpo'
+    });
+
+    // contact send button - prepares mailto link
+    document.getElementById('sendBtn').addEventListener('click', ()=>{
+      const n = document.getElementById('name').value || 'Friend';
+      const e = document.getElementById('email').value || '';
+      const m = document.getElementById('message').value || '';
+      const subject = encodeURIComponent('Portfolio contact — '+n);
+      const body = encodeURIComponent('Name: '+n+'\nEmail: '+e+'\n\n'+m);
+      window.location.href = 'mailto:devisriprasad948@gmail.com?subject='+subject+'&body='+body;
+    });
+
+    // small helper: download resume placeholder (replace with real PDF path if available)
+    function downloadResume(){
+      const link = document.createElement('a');
+      // NOTE: replace the href below with the actual resume URL or file path
+      link.href = 'resume-devi-sri.pdf';
+      link.download = 'Devi-Sri-Ranga-Prasad-Resume.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
+
+    // Smooth scroll for nav
+    document.querySelectorAll('nav a').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        ev.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+  </script>
+</body>
+</html>
